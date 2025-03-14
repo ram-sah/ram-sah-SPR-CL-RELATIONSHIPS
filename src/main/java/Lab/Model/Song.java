@@ -22,7 +22,7 @@ public class Song {
     //The GeneratedValue annotation allows for Spring to automatically generate a unique ID.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long songId;
+    private Long songId;
     private String title;
     /**
      * There is many songs for one album.

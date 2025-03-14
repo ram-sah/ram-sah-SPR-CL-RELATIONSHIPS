@@ -23,15 +23,20 @@ public class Artist {
     //The GeneratedValue annotation allows for Spring to automatically generate a unique ID.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long artistId;
+    private Long artistId;
     private String name;
     /**
      * There is one artist for many albums.
      * They will be connected via a foreign key by the name "album_fk", belonging to the Album table.
      * Spring will automatically perform the logic needed to join the Album and Artist table to get related albums.
      */
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "artist_fk")
+
+     /** =============================
+     * One artist has multiple albums.
+     * The foreign key is "artist_fk" in the Album table.
+     */
+    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    // @JoinColumn(name = "artist_fk")
     private List<Album> albums;
 
     public Artist(String name) {
